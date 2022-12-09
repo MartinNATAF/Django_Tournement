@@ -1,0 +1,29 @@
+<h1>{{ equipe.nom }}</h1>
+<ul>
+{% for match in equipe.get_matches %}
+    <li>{{ match.visiteur }}  {{ match.score_visiteurs }} : {{ match.score_locaux }}  {{ match.locaux }} 
+        {% if equipe.ID == match.visiteur.ID %}
+            {% if match.score_visiteurs > match.score_locaux %}
+            --------xxx------- L'équipe à marqué 3 pts
+            {% endif %}
+            {% if match.score_visiteurs < match.score_locaux %}
+            --------xxx------- L'équipe à marqué 0 pts
+            {% endif %}
+            {% if match.score_visiteurs == match.score_locaux %}
+            --------xxx------- L'équipe à marqué 1 pts
+            {% endif %}
+        {% endif %}
+        {% if equipe.ID != match.visiteur.ID %}
+            {% if match.score_visiteurs > match.score_locaux %}
+            --------xxx------- L'équipe à marqué 0 pts
+            {% endif %}
+            {% if match.score_visiteurs < match.score_locaux %}
+            --------xxx------- L'équipe à marqué 3 pts
+            {% endif %}
+            {% if match.score_visiteurs == match.score_locaux %}
+            --------xxx------- L'équipe à marqué 1 pts
+            {% endif %}
+        {% endif %}
+    </li>
+{% endfor %}
+</ul>

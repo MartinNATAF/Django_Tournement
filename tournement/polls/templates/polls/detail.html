@@ -1,6 +1,6 @@
 <h1>{{ ligue.nom }}</h1>
 <ul>
-{% for equipe in ligue.equipe_set.all %}
-    <li>{{ equipe.nom }}</li>
+{% for equipe in ligue.get_equipes|dictsortreversed:"point" %}
+    <li><a href="{% url 'polls:results' equipe.ID %}">{{ equipe.nom }} : {{ equipe.some }} pts</a></li>
 {% endfor %}
 </ul>
