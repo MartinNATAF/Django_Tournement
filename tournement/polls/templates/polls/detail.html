@@ -3,4 +3,17 @@
 {% for equipe in ligue.get_equipes|dictsortreversed:"point" %}
     <li><a href="{% url 'polls:results' equipe.ID %}">{{ equipe.nom }} : {{ equipe.some }} pts</a></li>
 {% endfor %}
+<table>
+    <tr>
+        <th>Visiteur</th>
+        <th>Locaux</th>
+        <th>date</th>
+    </tr>
+    {% for match in ligue.get_matches %}
+        <tr>
+            <td>{{ match.visiteur }}</td>
+            <td>{{ match.locaux }}</td>
+            <td>{{ match.date|date:"d M, Y" }}</td>
+        </tr>
+    {% endfor %}
 </ul>

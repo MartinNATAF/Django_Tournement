@@ -1,6 +1,6 @@
 from django.shortcuts import get_object_or_404, render
 
-from .models import Ligue, Equipe
+from .models import Ligue, Equipe, Match
 
 def index(request):
     latest_ligue_list = Ligue.objects.all

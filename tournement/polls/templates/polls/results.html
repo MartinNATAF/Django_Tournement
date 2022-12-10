@@ -1,29 +1,50 @@
 <h1>{{ equipe.nom }}</h1>
 <ul>
-{% for match in equipe.get_matches %}
-    <li>{{ match.visiteur }}  {{ match.score_visiteurs }} : {{ match.score_locaux }}  {{ match.locaux }} 
-        {% if equipe.ID == match.visiteur.ID %}
-            {% if match.score_visiteurs > match.score_locaux %}
-            --------xxx------- L'équipe à marqué 3 pts
-            {% endif %}
-            {% if match.score_visiteurs < match.score_locaux %}
-            --------xxx------- L'équipe à marqué 0 pts
-            {% endif %}
-            {% if match.score_visiteurs == match.score_locaux %}
-            --------xxx------- L'équipe à marqué 1 pts
-            {% endif %}
-        {% endif %}
-        {% if equipe.ID != match.visiteur.ID %}
-            {% if match.score_visiteurs > match.score_locaux %}
-            --------xxx------- L'équipe à marqué 0 pts
-            {% endif %}
-            {% if match.score_visiteurs < match.score_locaux %}
-            --------xxx------- L'équipe à marqué 3 pts
-            {% endif %}
-            {% if match.score_visiteurs == match.score_locaux %}
-            --------xxx------- L'équipe à marqué 1 pts
-            {% endif %}
-        {% endif %}
-    </li>
-{% endfor %}
+    <table>
+        <tr>
+            <th>Visiteur</th>
+            <th>Score</th>
+            <th>Locaux</th>
+            <th>Score</th>
+            <th>Points</th>
+            <th>date</th>
+        </tr>
+    {% for match in equipe.get_matches|dictsort:"date" %}
+        <tr>
+            <td>{{ match.visiteur }}</td>
+            <td>{{ match.score_visiteurs }}</td>
+            <td>{{ match.locaux }}</td>
+            <td>{{ match.score_locaux }}</td>
+            <td>
+                 
+                {% if equipe.ID == match.visiteur.ID and match.score_visiteurs != '-'%}
+                    {% if match.score_visiteurs > match.score_locaux %}
+                    + 3 pts
+                    {% endif %}
+                    {% if match.score_visiteurs < match.score_locaux %}
+                    0 pts 
+                    {% endif %}
+                    {% if match.score_visiteurs == match.score_locaux %}
+                    + 1 pts
+                    {% endif %}
+                {% endif %}
+                {% if equipe.ID != match.visiteur.ID and match.score_visiteurs != '-'%}
+                    {% if match.score_visiteurs > match.score_locaux %}
+                    0 pts
+                    {% endif %}
+                    {% if match.score_visiteurs < match.score_locaux %}
+                    + 3 pts 
+                    {% endif %}
+                    {% if match.score_visiteurs == match.score_locaux %}
+                    + 1 pts
+                    {% endif %}
+                {% endif %}
+                {% if match.score_visiteurs == '-'%}
+                    Non joué
+                {% endif %}
+            </td>
+            <td>{{match.date|date:"d M, Y"}}</td>
+        </tr>
+    {% endfor %}
+    </table>
 </ul>

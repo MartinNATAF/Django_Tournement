@@ -5,6 +5,9 @@ class Ligue(models.Model):
     nom = models.CharField(max_length=20)
     def __str__(self):
         return self.nom
+    def get_matches(self):
+        matches= Match.objects.all().filter(ligue=self.ID).filter(score_visiteurs='-')
+        return matches
     def get_equipes(self):
         equipes = Equipe.objects.all().filter(ligue=self.ID)
         for equipe in equipes:
@@ -67,7 +70,8 @@ class Match(models.Model):
     ligue = models.ForeignKey(Ligue, on_delete=models.CASCADE)
     visiteur = models.ForeignKey(Equipe, on_delete=models.CASCADE, related_name="visiteurs")
     locaux = models.ForeignKey(Equipe, on_delete=models.CASCADE, related_name="locaux")
-    score_visiteurs = models.IntegerField(default=0)
-    score_locaux = models.IntegerField(default=0)
+    score_visiteurs = models.CharField(default='-', max_length=2)
+    score_locaux = models.CharField(default='-',max_length=2)
+    date = models.DateField()
     
     
