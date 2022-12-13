@@ -9,13 +9,15 @@
             <tr>
                 <th>#</th>
                 <th>Equipe</th>
-                <th>Total</th>
+                <th class="th">Total</th>
+                <th class="th">Colaverage</th>
             </tr>
-            {% for equipe in ligue.get_equipes|dictsortreversed:"point" %}
+            {% for equipe in ligue.get_equipes %}
                 <tr>
                     <th>{{forloop.counter}}</th>
                     <th><a href="{% url 'polls:results' equipe.ID %}">{{ equipe.nom }}</a></th>
                     <th>{{ equipe.point }}</th>
+                    <th>{{ equipe.colaverage }}</th>
                 </tr>
             {% endfor %}
         </table>
@@ -26,23 +28,25 @@
         </h2>
             <table class="table table-bordered">
                 <tr>
-                    <th>Visiteur</th>
                     <th>Locaux</th>
+                    <th>Visiteur</th>
                     <th>date</th>
                 </tr>
                 {% for match in ligue.get_matches %}
                     <tr>
-                        <td>{{ match.visiteur }}</td>
                         <td>{{ match.locaux }}</td>
+                        <td>{{ match.visiteur }}</td>
                         <td>{{ match.date|date:"d M, Y" }}</td>
                     </tr>
                 {% endfor %}
             </table>
-            <a href="./post">
-                <button  type="button" class="btn btn-outline-success">Mettre des scores</button>
-            </a>
-            <a href="/polls/create/{{ligue.ID}}/">
-                <button  type="button" class="btn btn-outline-success">Créer un championnat</button>
-            </a>
+            <div class="flex_btn_around">
+                <a href="./post">
+                    <button  type="button" class="btn btn-outline-success">Mettre des scores</button>
+                </a>
+                <a href="/polls/create/{{ligue.ID}}/">
+                    <button  type="button" class="btn btn-outline-success">Créer un championnat</button>
+                </a>
+            </div>
     </div>
 </div>

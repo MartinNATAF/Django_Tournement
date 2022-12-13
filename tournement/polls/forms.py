@@ -7,4 +7,4 @@ class MatchForm(forms.ModelForm):
 
     class Meta:
         model = Match
-        fields = ('score_visiteurs', 'score_locaux',)
+        fields = ('score_locaux', 'score_visiteurs')

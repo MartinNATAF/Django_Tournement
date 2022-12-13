@@ -4,7 +4,7 @@
 
 <h1>{{ ligue.nom }}</h1>
 {% for match in ligue.get_matches %}
-    <p>{{match.visiteur.nom}} VS {{match.locaux.nom}} joué le {{ match.date|date:"d M, Y" }}</p>
+    <p>{{match.locaux.nom}} VS {{match.visiteur.nom}} joué le {{ match.date|date:"d M, Y" }}</p>
     <form action="/polls/post/{{match.id}}/  " method="post">
         {% csrf_token %}
         {{ form }}
