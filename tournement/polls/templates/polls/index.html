@@ -8,6 +8,10 @@
     {% for ligue in latest_ligue_list %}
     <h2><a href="{% url 'polls:detail' ligue.ID %}">{{ ligue.nom }}</a></h2>
     {% endfor %}
+    <a href="post/random/">
+        <button  id="butn" type="button" class="btn btn-outline-success">Créer une random ligue</button>
+    </a>
 {% else %}
+
     <p>No polls are available.</p>
 {% endif %}
