@@ -1,6 +1,6 @@
-# Django_Tournement(Soccer)
+#                                                                 Django_Tournement(Soccer)
 
-## sortie pour regarder l'index : http://127.0.0.1:8000/polls/
+##                                              sortie pour regarder l'index : http://127.0.0.1:8000/polls/
 
 Appli qui répertorie différentes ligues.
 Un bouton qui génère une ligue aléatoire parmi les ligues existantes de foot ainsi que toutes les équipes qui compose la ligue mais sans les matchs.
@@ -8,7 +8,9 @@ Un bouton qui génère une ligue aléatoire parmi les ligues existantes de foot 
 On peut ensuite cliqué sur chaque ligue différentes pour accéder au classement ainsi que les matchs
 enregistrés mais pas encore joué.
 
-##classement :
+
+##                                                                      classement :
+
 3 pts pour l’équipe gagnante et 0 pour la perdante.
 En cas d’égalité 1pts pour chacun.
 Si deux équipes on le même nombre des pts on regarde le colaverage(diff but mis – but pris)
